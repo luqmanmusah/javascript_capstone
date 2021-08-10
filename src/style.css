@@ -1,0 +1,68 @@
+body {
+  font-family: 'Varela Round', sans-serif;
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+button {
+  margin: 4px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 1px;
+  margin: 1px;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  height: 3rem;
+}
+
+nav {
+  display: flex;
+  width: 80vw;
+}
+
+.nav-links {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-logo {
+  height: 30px;
+  width: 30px;
+}
+
+.movies {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: space-evenly;
+}
+
+.movie {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-name-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.movie-name-section p {
+  margin: 1px;
+}
+
+.likes {
+  display: flex;
+  justify-content: end;
+}
