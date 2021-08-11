@@ -30,16 +30,18 @@ const drawMovies = (movies) => {
 const modalFnc = () => {
   const myModal = document.getElementById('myModal');
   const modalContent = document.getElementById('modalContent');
-  modalContent.forEach((item) => {
-    item.remove();
-  });
-  movies.forEach((movie, id) => {
-    const li = document.createElement('li');
-    
-  myModal.appendChild(li);
+  // modalContent.forEach((item) => {
+  //   item.remove();
+  // });
+  // movies.forEach((movie, id) => {
+  //   const li = document.createElement('li');
+  //   li.classList.add('movies');
+  //   li.innerHTML = `<img src="${movie.image.large}" class="movie-img" alt="${movie.name}">`
+
+  myModal.appendChild(modalContent);
   myModal.style.display = 'block';
   console.log(myModal, 'hello here');
-});
+};
 
 
 const init = async () => {
