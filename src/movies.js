@@ -1,3 +1,4 @@
+/* eslint-disabled */
 const request = new XMLHttpRequest();
 const baseUrl = 'https://api.tvmaze.com/shows';
 
@@ -25,8 +26,8 @@ export default class Movies {
   }
 
   async getMovies() {
-    for (let i = 0; i < 6; i++) {
-      let film = await this.getMovie(i + 1)
+    for (let i = 0; i < 6; i += 1) {
+      const film = await this.getMovie(i + 1);
       this.movieList[i] = film;
     }
   }
