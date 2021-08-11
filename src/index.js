@@ -1,7 +1,13 @@
+import Alert from 'bootstrap/js/dist/alert';
 import Movies from "./movies";
 import "./style.css";
+// import logo from './logo_iflix.png';
+
 const request = new XMLHttpRequest();
 const myMovies = new Movies();
+
+// const img = document.querySelector('nav_logo');
+// console.log(img, "logo");
 
 const drawMovies = (movies) => {
   const movies_ul = document.getElementById('movies');
@@ -9,18 +15,32 @@ const drawMovies = (movies) => {
   liToRemove.forEach((item) => {
     item.remove();
   });
-  movies.forEach((movie) => {
+  movies.forEach((movie, id) => {
     const li = document.createElement('li');
     li.classList.add('movie');
-    li.innerHTML = 
-    `<img src="${movie.image.medium}" class="movie-img" alt="${movie.name}">`
+    li.innerHTML = `<img src="${movie.image.medium}" class="movie-img" alt="${movie.name}">`
     + `<div class="movie-name-section"><p> ${movie.name}</p><i class="fa fa-heart-o" style="font-size:24px"></i></div>`
-    + `<p class="likes">5 Likes</p>`
-    + `<button>Comments</button><br>`
-    + `<button>Reservations</button>`;
+    + '<p class="likes">5 Likes</p>'
+    + `<button id="comment${id}">Comments</button><br>`;
+
     movies_ul.appendChild(li);
+    document.getElementById(`comment${id}`).onclick = modalFnc;
   });
 };
+const modalFnc = () => {
+  const myModal = document.getElementById('myModal');
+  const modalContent = document.getElementById('modalContent');
+  modalContent.forEach((item) => {
+    item.remove();
+  });
+  movies.forEach((movie, id) => {
+    const li = document.createElement('li');
+    
+  myModal.appendChild(li);
+  myModal.style.display = 'block';
+  console.log(myModal, 'hello here');
+});
+
 
 const init = async () => {
   await myMovies.getMovies();

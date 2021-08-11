@@ -26,6 +26,13 @@ module.exports = {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        loader: 'file-loader',
+        options: {
+          publicPath: 'built'
+        },
+      },
     ],
   },
   performance: {
