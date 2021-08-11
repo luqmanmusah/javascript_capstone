@@ -17,8 +17,7 @@ const drawMovies = (movies) => {
     `<img src="${movie.image.medium}" class="movie-img" alt="${movie.name}">`
     + `<div class="movie-name-section"><p> ${movie.name}</p><i class="fa fa-heart-o" style="font-size:24px"></i></div>`
     + `<p class="likes" id="${movie.id}">5 Likes</p>`
-    + `<button>Comments</button><br>`
-    + `<button>Reservations</button>`;
+    + `<button>Comments</button><br>`;
     movies_ul.appendChild(li);
   });
 };
