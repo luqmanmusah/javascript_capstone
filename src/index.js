@@ -31,7 +31,6 @@ const drawMovies = (movies) => {
       };
       request.send(params);
     });
-
   });
 };
 
