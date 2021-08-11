@@ -29,6 +29,14 @@ nav {
   width: 80vw;
 }
 
+.likeBtn {
+  cursor: pointer;
+}
+
+.likeBtn:hover {
+  color: red;
+}
+
 .nav-links {
   width: 50%;
   display: flex;
