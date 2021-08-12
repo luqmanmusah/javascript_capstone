@@ -1,10 +1,9 @@
 import Movies from './movies';
 import './style.css';
 // import logo_iflix from "./logo_iflix.png"
-const request = new XMLHttpRequest();
 const likeUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/JSE0hSFAswxrC4wkDks7/likes/';
 const myMovies = new Movies();
-
+const navCount = document.getElementById('nav-count');
 const drawMovies = (movies) => {
   const moviesUl = document.getElementById('movies');
   const liToRemove = document.querySelectorAll('#movies li');
@@ -20,18 +19,22 @@ const drawMovies = (movies) => {
     + '<button>Comments</button><br>';
     moviesUl.appendChild(li);
     const likeBtn = document.getElementById(movie.id);
-    likeBtn.addEventListener('click', () => {
-      const params = `item_id=${movie.id}`;
-      request.open('POST', likeUrl, true);
-      request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-      request.onreadystatechange = function () {
-        if (request.readyState === 4 && request.status === 200) {
-          alert(request.responseText);
-        }
+    likeBtn.addEventListener('click', async () => {
+      const params = {
+        item_id: `${movie.id}`,
       };
-      request.send(params);
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(params),
+      };
+
+      await fetch(likeUrl, options).then((response) => response.json());
     });
   });
+  navCount.innerHTML = `Movies(${movies.length})`;
 };
 
 const init = async () => {

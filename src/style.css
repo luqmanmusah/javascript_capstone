@@ -1,3 +1,7 @@
+html {
+  position: relative;
+}
+
 body {
   font-family: 'Varela Round', sans-serif;
   box-sizing: border-box;

@@ -1,5 +1,4 @@
 /*eslint-disable*/
-const request = new XMLHttpRequest();
 const baseUrl = 'https://api.tvmaze.com/shows';
 const likeUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/JSE0hSFAswxrC4wkDks7/likes/';
 
@@ -9,34 +8,15 @@ export default class Movies {
   }
 
   async getMovie(id) {
-    const oneMovieUrl = `${baseUrl}/${id}`;
-    const moviePromis = new Promise((myResolve) => {
-      request.open('GET', oneMovieUrl);
-      request.onload = () => {
-        if (request.status === 200) {
-          myResolve(request.response);
-        } else {
-          myResolve('Error');
-        }
-      };
-      request.send();
-    });
-    return JSON.parse(await moviePromis);
+    const request = await fetch(`${baseUrl}/${id}`);
+    const data = await request.json();
+    return data;
   }
 
   async getLikes() {
-    const likePromis = new Promise((myResolve) => {
-      request.open('GET', likeUrl);
-      request.onload = () => {
-        if (request.status === 200) {
-          myResolve(request.response);
-        } else {
-          myResolve('Error');
-        }
-      };
-      request.send();
-    });
-    return JSON.parse(await likePromis);
+    const request = await fetch(likeUrl);
+    const data = await request.json();
+    return data;
   }
 
   async getMovies() {
