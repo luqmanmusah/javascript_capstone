@@ -22,7 +22,7 @@ export default class Movies {
   async getMovies() {
     const likesList = await this.getLikes();
     for (let i = 0; i < 6; i += 1) {
-      const film = await this.getMovie(i + 5);
+      const film = await this.getMovie(i + 8);
       this.movieList[i] = film;
       this.movieList[i].likes = 0
     }

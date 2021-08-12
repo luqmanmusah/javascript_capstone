@@ -1,11 +1,30 @@
 html {
   position: relative;
+  background-color: black;
+  background-image: url('../assets/background1.jpg');
+}
+
+p {
+  margin: 1px;
+}
+
+html::before {
+  content: "";
+  background-size: 100% 100%;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  opacity: 0.5;
 }
 
 body {
+  position: relative;
   font-family: 'Varela Round', sans-serif;
   box-sizing: border-box;
-  height: 100vh;
+  height: 100%;
+  margin: 1px;
 }
 
 button {
@@ -20,17 +39,29 @@ ul {
 
 a {
   text-decoration: none;
+  color: white;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 header {
   display: flex;
   justify-content: center;
-  height: 4rem;
+  height: 55px;
+  width: 100%;
+  background-color: black;
+  margin-bottom: 2rem;
 }
 
 nav {
   display: flex;
   width: 80vw;
+  align-items: center;
+}
+
+nav a.hover {
+  text-shadow: 2px 2px 4px #fababa;
 }
 
 .likeBtn {
@@ -45,11 +76,17 @@ nav {
   width: 50%;
   display: flex;
   justify-content: space-around;
+  margin-left: 40px;
 }
 
 .nav-logo {
+  font-size: 40px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   height: 50px;
   width: 50px;
+  color: red;
+  padding: 1px;
+  margin: 1px;
 }
 
 .movies {
@@ -63,6 +100,14 @@ nav {
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.movie-img {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .movie-name-section {
@@ -76,5 +121,19 @@ nav {
 
 .likes {
   display: flex;
+  margin: 2px;
+}
+
+.like-div {
+  display: flex;
   justify-content: end;
+}
+
+.commentBtn {
+  background-color: rgb(7, 37, 37);
+  color: white;
+  font-weight: bold;
+  font-size: 17px;
+  border: 1px solid rgb(7, 37, 37);
+  box-shadow: 2px 2px;
 }

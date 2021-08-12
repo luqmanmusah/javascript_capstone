@@ -15,8 +15,8 @@ const drawMovies = (movies) => {
     li.classList.add('movie');
     li.innerHTML = `<img src="${movie.image.medium}" class="movie-img" alt="${movie.name}">`
     + `<div class="movie-name-section"><p> ${movie.name}</p><i class="likeBtn fa fa-heart-o" id="${movie.id}" style="font-size:24px"></i></div>`
-    + `<p class="likes">${movie.likes} Likes</p>`
-    + '<button>Comments</button><br>';
+    + `<div class="like-div"><p class="likes" id="like${movie.id}">${movie.likes}</p><p> Likes</p></div>`
+    + '<button class="commentBtn">Comments</button><br>';
     moviesUl.appendChild(li);
     const likeBtn = document.getElementById(movie.id);
     likeBtn.addEventListener('click', async () => {
@@ -31,7 +31,10 @@ const drawMovies = (movies) => {
         body: JSON.stringify(params),
       };
 
-      await fetch(likeUrl, options).then((response) => response.json());
+      await fetch(likeUrl, options).then((response) => response.status);
+      const likeTag = document.getElementById(`like${movie.id}`);
+      const likeNum = parseInt(likeTag.innerHTML);
+      likeTag.innerHTML = likeNum + 1;
     });
   });
   navCount.innerHTML = `Movies(${movies.length})`;
