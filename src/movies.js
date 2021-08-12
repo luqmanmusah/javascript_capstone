@@ -46,16 +46,16 @@ export default class Movies {
     return JSON.parse(await commentPromise);
   }
 
-  const postComment = (e, username, insight) => {
-    e.preventDefault();
-    const params = `username=${username.value}&insight=${insight.value}`;
-    request.open('POST', commenttURL, true);
-    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    request.onreadystatechange = () => {
-      if (request.readyState === 4 && request.status === 200) {
-        alert(request.responseText);
-      }
-    };
-    request.send(params);
-  };
+  // const postComment = (e, username, insight) => {
+  //   e.preventDefault();
+  //   const params = `username=${username.value}&insight=${insight.value}`;
+  //   request.open('POST', commenttURL, true);
+  //   request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  //   request.onreadystatechange = () => {
+  //     if (request.readyState === 4 && request.status === 200) {
+  //       alert(request.responseText);
+  //     }
+  //   };
+  //   request.send(params);
+  // };
 }

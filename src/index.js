@@ -1,4 +1,5 @@
 import Alert from 'bootstrap/js/dist/alert';
+import { assign } from 'lodash';
 import Movies from "./movies";
 import "./style.css";
 const commentUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/JSE0hSFAswxrC4wkDks7/comments/';
@@ -35,7 +36,7 @@ const modalFnc = async(id) => {
   const payload = {
     item_id: id,
     username: ""
-  }
+  };
   // const sendComment = await myMovies.sendComment()
   console.log(getMovie, 'get movie here');
   modalContent.innerHTML = `
@@ -44,12 +45,49 @@ const modalFnc = async(id) => {
 
     <h3>Comment</h3>
 
-    <form id="myForm" action="" onsubmit="`postComment`">
+    <form id="myForm" action="" onsubmit="postComment">
       <input type="text" name="fname" id="username" placeholder="Your name"><br>
       <textarea name="lname" id="insight" cols="30" rows="10"></textarea><br>
-      <input type="submit" value="Submit">
+      <input type="submit" value="Submit" id="submit">
     </form>
   `
+  
+  
+  const submit = document.getElementById('submit');
+  submit.onclick = async (e) => {
+    e.preventDefault();
+    const username = document.getElementById('username');
+  const insight = document.getElementById('insight');
+      const user = {
+        item_id: `${id}`,
+        username: `${username.value}`,
+        comment: `${insight.value}`,
+      };
+        await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/JSE0hSFAswxrC4wkDks7/comments/', {
+          method: 'POST',
+          body: JSON.stringify(user),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        })
+  };
+  // const submit = document.getElementById('submit');
+  // submit.onclick = (e) => {
+  //   e.preventDefault();
+  //   const username = document.getElementById('username');
+  //   const insight = document.getElementById('insight');
+  //   console.log(id, 'jhdkdjskds');
+  //   const params = `item_id=${id}&username=${username.value}&comment=${insight.value}`;
+  //   request.open('POST', commentUrl, true);
+  //   request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  //   request.onreadystatechange = () => {
+  //     if (request.readyState === 4 && request.status === 200) {
+  //       alert(request.responseText);
+  //     }
+  //   };
+  //   request.send(params);
+    
+  
   // movies.forEach((movie, id) => {
   //   const li = document.createElement('li');
   //   li.classList.add('movies');
