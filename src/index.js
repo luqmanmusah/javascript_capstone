@@ -1,6 +1,7 @@
 import Alert from 'bootstrap/js/dist/alert';
 import Movies from "./movies";
 import "./style.css";
+const commentUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/JSE0hSFAswxrC4wkDks7/comments/';
 // import logo from './logo_iflix.png';
 
 const request = new XMLHttpRequest();
@@ -24,15 +25,31 @@ const drawMovies = (movies) => {
     + `<button id="comment${id}">Comments</button><br>`;
 
     movies_ul.appendChild(li);
-    document.getElementById(`comment${id}`).onclick = modalFnc;
+    document.getElementById(`comment${id}`).onclick = () => modalFnc(movie.id);
   });
 };
-const modalFnc = () => {
+const modalFnc = async(id) => {
   const myModal = document.getElementById('myModal');
   const modalContent = document.getElementById('modalContent');
-  // modalContent.forEach((item) => {
-  //   item.remove();
-  // });
+  const getMovie = await myMovies.getMovie(id);
+  const payload = {
+    item_id: id,
+    username: ""
+  }
+  // const sendComment = await myMovies.sendComment()
+  console.log(getMovie, 'get movie here');
+  modalContent.innerHTML = `
+    <img src='${getMovie.image.original}' width='200px' alt=''/>
+    ${getMovie.summary}
+
+    <h3>Comment</h3>
+
+    <form id="myForm" action="" onsubmit="`postComment`">
+      <input type="text" name="fname" id="username" placeholder="Your name"><br>
+      <textarea name="lname" id="insight" cols="30" rows="10"></textarea><br>
+      <input type="submit" value="Submit">
+    </form>
+  `
   // movies.forEach((movie, id) => {
   //   const li = document.createElement('li');
   //   li.classList.add('movies');
@@ -40,7 +57,6 @@ const modalFnc = () => {
 
   myModal.appendChild(modalContent);
   myModal.style.display = 'block';
-  console.log(myModal, 'hello here');
 };
 
 
