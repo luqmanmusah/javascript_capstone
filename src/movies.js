@@ -31,20 +31,25 @@ export default class Movies {
     }
   }
 
-  async getComments() {
-    const commentPromise = new Promise((myResolve) => {
-      request.open('GET', commentUrl);
-      request.onload = () => {
-        if (request.status === 200) {
-          myResolve(request.response);
-        } else {
-          myResolve('Error');
-        }
-      };
-      request.send();
-    });
-    return JSON.parse(await commentPromise);
-  }
+  // const getComments = async () => {
+  //   const request = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/JSE0hSFAswxrC4wkDks7/comments/');
+  //   const data = await request.json();
+  //   return data;
+  // };
+  // async getComments() {
+  //   const commentPromise = new Promise((myResolve) => {
+  //     request.open('GET', commentUrl);
+  //     request.onload = () => {
+  //       if (request.status === 200) {
+  //         myResolve(request.response);
+  //       } else {
+  //         myResolve('Error');
+  //       }
+  //     };
+  //     request.send();
+  //   });
+  //   return JSON.parse(await commentPromise);
+  // }
 
   // const postComment = (e, username, insight) => {
   //   e.preventDefault();
