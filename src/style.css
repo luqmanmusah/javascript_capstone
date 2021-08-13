@@ -247,3 +247,9 @@ nav a.hover {
 .commentLi {
   font-size: 18px;
 }
+
+footer {
+  padding: 25px;
+  background-color: black;
+  color: white;
+}
