@@ -5,7 +5,7 @@ import counter from './counter';
 // import logo_iflix from "./logo_iflix.png"
 const likeUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/JSE0hSFAswxrC4wkDks7/likes/';
 const navCount = document.getElementById('nav-count');
-const commentUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/oFkkXhh8ZCM14YoilhgC/comments/';
+const commentUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/oFkkXhh8ZCM14YoilhgC/comments';
 const myMovies = new Movies();
 
 const modalFnc = async (id) => {
@@ -13,15 +13,31 @@ const modalFnc = async (id) => {
   const modalContent = document.getElementById('modalContent');
   const getMovie = await myMovies.getMovie(id);
   const getComments = async () => {
-    const request = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/oFkkXhh8ZCM14YoilhgC/comments?item_id=${id}`);
+    const request = await fetch(`${commentUrl}?item_id=${id}`);
     let data = [];
 
     data = await request.json();
     return data;
   };
-  modalContent.innerHTML = `<span class="close">&times;</span>
-    <img src='${getMovie.image.original}' width='200px' alt=''/>
-    ${getMovie.summary}
+  modalContent.innerHTML = `<div class="close-icon"><span class="close">&times;</span></div>
+  <div class="movie-section">
+  <div class="movie-head">
+    <img src='${getMovie.image.original}' class="movie-modal-img" width='200px' alt=''/>
+    <h2>${getMovie.name}</h2>
+  </div>
+  <div class="movie-desc">${getMovie.summary}</div>
+  </div>
+  <div class="movie-infos">
+    <div class="movie-info">
+      <p>rating:</p> <p>${getMovie.rating.average}</p>
+    </div>
+    <div class="movie-info">
+      <p>status:</p> <p>${getMovie.status}</p>
+    </div>
+    <div class="movie-info">
+      <p>type:</p> <p>${getMovie.type}</p>
+    </div>
+  </div>
    <h2 id="commentCount"></h2>
     <ul id="commentUl">
     
@@ -29,9 +45,9 @@ const modalFnc = async (id) => {
     <h3>Add a Comment</h3>
 
     <form id="myForm" action="" onsubmit="postComment">
-      <input type="text" name="fname" id="username" placeholder="Your name"><br>
-      <textarea name="lname" id="insight" cols="30" rows="10"></textarea><br>
-      <input type="submit" value="Submit" id="submit">
+    <input type="text" class="form-input" name="fname" id="username" placeholder="Your name"><br>
+    <textarea name="lname" class="form-input" id="insight" cols="10" rows="5"></textarea><br>
+    <input type="submit" class="submit" value="Submit" id="submit">
     </form>
   `;
 
@@ -43,6 +59,7 @@ const modalFnc = async (id) => {
 
   commentList.forEach((comment) => {
     const li = document.createElement('li');
+    li.classList.add('commentLi');
     li.innerHTML = ` ${comment.username}: ${comment.creation_date} ${comment.comment}`;
     commentUl.appendChild(li);
   });
@@ -122,11 +139,16 @@ const drawMovies = (movies) => {
       likeTag.innerHTML = likeNum + 1;
     });
   });
-  navCount.innerHTML = `Movies(${movies.length})`;
+};
+
+const countMovies = async (film, target) => {
+  const numMovies = film.length;
+  target.innerHTML = `Movies(${numMovies})`;
 };
 
 const init = async () => {
   await myMovies.getMovies();
+  countMovies(myMovies.movieList, navCount);
   drawMovies(myMovies.movieList);
 };
 
