@@ -32,7 +32,8 @@ this is link to our live Demo [Live Demo](https://m05e5.github.io/Leaderboard/)
 - Github: [@m05e5](https://github.com/m05e5)
 - Linkedin: [caleb Moses](https://www.linkedin.com/in/caleb-moses-0a1b531b9/)
 
-
+- GitHub: [@luqmanmusah](https://github.com/luqmanmusah)
+- LinkedIn: [Luqman Musah](https://www.linkedin.com/in/luqman-musah/)
 ## Show your support
 
 Give a ⭐️ if you like this project!
