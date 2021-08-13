@@ -240,6 +240,8 @@ nav a.hover {
 
 .submit {
   cursor: pointer;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .commentLi {
