@@ -1,0 +1,255 @@
+html {
+  position: relative;
+  background-color: black;
+  background-image: url('../assets/background1.jpg');
+}
+
+p {
+  margin: 1px;
+}
+
+html::before {
+  content: "";
+  background-size: 100% 100%;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  opacity: 0.5;
+}
+
+body {
+  position: relative;
+  font-family: 'Varela Round', sans-serif;
+  box-sizing: border-box;
+  height: 1px;
+  margin: 1px;
+}
+
+button {
+  margin: 4px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 1px;
+  margin: 1px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  height: 55px;
+  width: 100%;
+  background-color: black;
+  margin-bottom: 2rem;
+}
+
+nav {
+  display: flex;
+  width: 80vw;
+  align-items: center;
+}
+
+nav a.hover {
+  text-shadow: 2px 2px 4px #fababa;
+}
+
+.likeBtn {
+  cursor: pointer;
+}
+
+.likeBtn:hover {
+  color: red;
+}
+
+.nav-links {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  margin-left: 40px;
+}
+
+.nav-logo {
+  font-size: 40px;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 50px;
+  width: 50px;
+  color: red;
+  padding: 1px;
+  margin: 1px;
+}
+
+.movies {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: space-evenly;
+}
+
+.movie {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.movie-img {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.movie-name-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.movie-name-section p {
+  margin: 1px;
+}
+
+.likes {
+  display: flex;
+  margin: 2px;
+}
+
+.like-div {
+  display: flex;
+  justify-content: end;
+}
+
+.commentBtn {
+  background-color: rgb(7, 37, 37);
+  color: white;
+  font-weight: bold;
+  font-size: 17px;
+  border: 1px solid rgb(7, 37, 37);
+  box-shadow: 2px 2px;
+}
+
+/* modal */
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  align-items: center;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 75%;
+}
+
+.close-icon {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: right;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.movie-section {
+  display: flex;
+  width: 95%;
+  justify-content: space-evenly;
+}
+
+.movie-head {
+  width: 27%;
+}
+
+.movie-modal-img {
+  width: 100%;
+}
+
+.movie-desc {
+  width: 60%;
+  font-size: 18px;
+}
+
+.movie-infos {
+  width: 60%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.movie-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.movie-info p {
+  font-size: 20px;
+}
+
+#commentUl {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#myForm {
+  gap: 7px;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.form-input,
+.submit {
+  border: 2px solid black;
+  background-color: white;
+}
+
+.submit {
+  cursor: pointer;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.commentLi {
+  font-size: 18px;
+}
+
+footer {
+  padding: 25px;
+  background-color: black;
+  color: white;
+}
