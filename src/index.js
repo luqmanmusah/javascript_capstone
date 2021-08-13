@@ -1,5 +1,4 @@
 /* eslint-disable quotes */
-import { assign } from 'lodash';
 import Movies from "./movies";
 import "./style.css";
 
@@ -7,25 +6,7 @@ const commentUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capst
 
 const myMovies = new Movies();
 
-const drawMovies = (movies) => {
-  const movies_ul = document.getElementById('movies');
-  const liToRemove = document.querySelectorAll('#movies li');
-  liToRemove.forEach((item) => {
-    item.remove();
-  });
-  movies.forEach((movie, id) => {
-    const li = document.createElement('li');
-    li.classList.add('movie');
-    li.innerHTML = `<img src="${movie.image.medium}" class="movie-img" alt="${movie.name}">`
-    + `<div class="movie-name-section"><p> ${movie.name}</p><i class="fa fa-heart-o" style="font-size:24px"></i></div>`
-    + '<p class="likes">5 Likes</p>'
-    + `<button id="comment${id}">Comments</button><br>`;
-
-    movies_ul.appendChild(li);
-    document.getElementById(`comment${id}`).onclick = () => modalFnc(movie.id);
-  });
-};
-const modalFnc = async(id) => {
+const modalFnc = async (id) => {
   const myModal = document.getElementById('myModal');
   const modalContent = document.getElementById('modalContent');
   const getMovie = await myMovies.getMovie(id);
@@ -86,7 +67,8 @@ const modalFnc = async(id) => {
         'Content-type': 'application/json; charset=UTF-8',
       },
 
-    })
+    });
+    myModal.style.display = "none";
   };
 
   myModal.appendChild(modalContent);
@@ -96,13 +78,32 @@ const modalFnc = async(id) => {
 
   span.onclick = () => {
     myModal.style.display = "none";
-  }
+  };
+
+  window.onclick = (event) => {
+    if (event.target === myModal) {
+      myModal.style.display = "none";
+    }
+  };
 };
 
-window.onclick = (event) => {
-  if (event.target === myModal) {
-    myModal.style.display = "none";
-  }
+const drawMovies = (movies) => {
+  const moviesUl = document.getElementById('movies');
+  const liToRemove = document.querySelectorAll('#movies li');
+  liToRemove.forEach((item) => {
+    item.remove();
+  });
+  movies.forEach((movie, id) => {
+    const li = document.createElement('li');
+    li.classList.add('movie');
+    li.innerHTML = `<img src="${movie.image.medium}" class="movie-img" alt="${movie.name}">`
+    + `<div class="movie-name-section"><p> ${movie.name}</p><i class="fa fa-heart-o" style="font-size:24px"></i></div>`
+    + '<p class="likes">5 Likes</p>'
+    + `<button id="comment${id}">Comments</button><br>`;
+
+    moviesUl.appendChild(li);
+    document.getElementById(`comment${id}`).onclick = () => modalFnc(movie.id);
+  });
 };
 
 const init = async () => {
@@ -112,7 +113,3 @@ const init = async () => {
 
 // eslint-disable-next-line no-restricted-globals
 onload = init();
-
-setTimeout(() => {
-  console.log(myMovies.movieList);
-}, 10000);
