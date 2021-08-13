@@ -52,20 +52,34 @@ const modalFnc = async (id) => {
   `;
 
   const commentUl = document.getElementById('commentUl');
-  let commentList = await getComments();
-  if (commentList.error) {
-    commentList = [];
-  }
+  let commentList = [];
 
-  commentList.forEach((comment) => {
-    const li = document.createElement('li');
-    li.classList.add('commentLi');
-    li.innerHTML = ` ${comment.username}: ${comment.creation_date} ${comment.comment}`;
-    commentUl.appendChild(li);
-  });
+  const getCommentList = async () => {
+    commentList = await getComments();
+    if (commentList.error) {
+      commentList = [];
+    }
+  };
+
+  await getCommentList();
+
+  const drawComments = async () => {
+    await getCommentList();
+    const liToRemove = document.querySelectorAll('#commentUl li');
+    liToRemove.forEach((item) => {
+      item.remove();
+    });
+    commentList.forEach((comment) => {
+      const li = document.createElement('li');
+      li.classList.add('commentLi');
+      li.innerHTML = ` ${comment.username}: ${comment.creation_date} ${comment.comment}`;
+      commentUl.appendChild(li);
+    });
+  };
+  await drawComments();
 
   const commentCount = document.getElementById('commentCount');
-  const counted = counter();
+  let counted = counter();
   commentCount.innerHTML = `Comment(${counted})`;
 
   const submit = document.getElementById('submit');
@@ -87,7 +101,10 @@ const modalFnc = async (id) => {
       },
 
     });
-    myModal.style.display = "none";
+    await getCommentList();
+    await drawComments();
+    counted = counter();
+    commentCount.innerHTML = `Comment(${counted})`;
   };
 
   myModal.appendChild(modalContent);
@@ -115,6 +132,7 @@ const drawMovies = (movies) => {
   movies.forEach((movie, id) => {
     const li = document.createElement('li');
     li.classList.add('movie');
+    li.id = `li${movie.id}`;
     li.innerHTML = `<img src="${movie.image.medium}" class="movie-img" alt="${movie.name}">`
     + `<div class="movie-name-section"><p> ${movie.name}</p><i class="likeBtn fa fa-heart-o" id="${movie.id}" style="font-size:24px"></i></div>`
     + `<div class="like-div"><p class="likes" id="like${movie.id}">${movie.likes}</p><p> Likes</p></div>`
