@@ -8,6 +8,7 @@ Here is a single page web site we built known as iflix. the porpose of this site
 
 this is link to our live Demo [Live Demo](https://luqmanmusah.github.io/javascript_capstone/)
 
+Here is a short [video demo](https://drive.google.com/file/d/1KVvZPCVzUw1rDxo7jHRvn836m3Co1C1Y/view?usp=sharing)
 ## Languages and tools
 
 - HTML
