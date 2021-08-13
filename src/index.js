@@ -138,11 +138,16 @@ const drawMovies = (movies) => {
       likeTag.innerHTML = likeNum + 1;
     });
   });
-  navCount.innerHTML = `Movies(${movies.length})`;
 };
+
+export const countMovies = async (film, target) => {
+  const numMovies = film.length
+  target.innerHTML = `Movies(${numMovies})`;
+}
 
 const init = async () => {
   await myMovies.getMovies();
+  countMovies(myMovies.movieList, navCount);
   drawMovies(myMovies.movieList);
 };
 
