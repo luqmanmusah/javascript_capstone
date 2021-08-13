@@ -1,6 +1,7 @@
 /* eslint-disable quotes */
 import Movies from './movies';
 import './style.css';
+import counter from './counter';
 // import logo_iflix from "./logo_iflix.png"
 const likeUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/JSE0hSFAswxrC4wkDks7/likes/';
 const navCount = document.getElementById('nav-count');
@@ -63,8 +64,8 @@ const modalFnc = async (id) => {
     commentUl.appendChild(li);
   });
 
-  const commentCount = document.getElementById('commentCount');
-  const counted = await commentList.length;
+  const commentCount = document.getElementById('commentUl');
+  const counted = counter(commentUl);
   commentCount.innerHTML = `Comment(${counted})`;
 
   const submit = document.getElementById('submit');

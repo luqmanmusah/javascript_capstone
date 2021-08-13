@@ -1,6 +1,7 @@
 
+import countMoviesMock from '../__mock__/styleMock';
 
- import countMoviesMock from '../__mock__/styleMock';
+import counter from '../__mock__/counter';
 
  document.body.innerHTML = `
  <header>
@@ -11,6 +12,11 @@
  <section>
    <div class="card-container"></div>
  </section>  
+ <ul id="commentUl">
+      <li></li>
+      <li></li>
+      <li></li>
+      </ul>
 `;
  describe('verify that the tests are working', () => {
 
@@ -26,4 +32,11 @@
       countMoviesMock(testList, navCount);
       expect(navCount.value).toBe('Movies(1)');
    })
- })
+    
+    const items = counter();
+    test('Add comment to the list', () => {
+      expect(items).toBe(3);
+    });
+  });
+  
+ 
