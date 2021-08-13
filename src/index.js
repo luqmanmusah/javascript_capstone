@@ -58,7 +58,7 @@ const modalFnc = async (id) => {
 
   commentList.forEach((comment) => {
     const li = document.createElement('li');
-    li.classList.add('commentLi')
+    li.classList.add('commentLi');
     li.innerHTML = `${comment.creation_date}   ${comment.username}:  ${comment.comment}`;
     commentUl.appendChild(li);
   });
@@ -151,4 +151,4 @@ onload = init();
 
 setTimeout(() => {
   console.log(myMovies.movieList);
-}, 10000); 
+}, 10000);
